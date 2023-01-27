@@ -31,8 +31,17 @@ const BalanceRouter = require('./routes/balance-router')
 const balanceRouter = new BalanceRouter({ models: sequelize.models, db: sequelize })
 
 const balanceExpressRouter = express.Router()
+balanceExpressRouter.use(getProfile)
 balanceExpressRouter.post('/balances/deposit/:userId', balanceRouter.deposit())
 
 app.use(balanceExpressRouter)
+
+const ReportRouter = require('./routes/report-router')
+const reportRouter = new ReportRouter({ models: sequelize.models, db: sequelize })
+
+const reportExpressRouter = express.Router()
+reportExpressRouter.get('/admin/best-profession', reportRouter.getBestProfessionReport())
+reportExpressRouter.use(getProfile)
+app.use(reportExpressRouter)
 
 module.exports = app
