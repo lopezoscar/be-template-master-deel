@@ -3,8 +3,6 @@ const contractStatus = require('../util/contract_status')
 const { Op } = require('sequelize')
 const NotFoundError = require('../errors/NotFoundError')
 const ValidationError = require('../errors/ValidationError')
-const sequelize = require('sequelize')
-const { Contract } = require('../model')
 
 class JobService {
   constructor ({ models, db }) {
