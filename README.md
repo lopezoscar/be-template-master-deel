@@ -1,10 +1,24 @@
 # DEEL BACKEND TASK
 
+# Tasks done
+* all endpoints
+* postman collection
+* standard js for linting
+* new architecture layer
 
-  
+# Future improvements
+
+*  improve router creation in app.js - a new layer only for express router.
+*  create a model layer that scale
+*  create a profile middleware for admins
+*  add unit tests and integration tests
+*  add swagger for API
+*  improve getProfile.js to manage better the rejection
+*  decopling sequelize from the services layer (services should not depends on the model implementation)
+
+# Thanks!
 
 💫 Welcome! 🎉
-
 
 This backend exercise involves building a Node.js/Express.js app that will serve a REST API. We imagine you should spend around 3 hours at implement this feature.
 
