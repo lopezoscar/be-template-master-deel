@@ -27,4 +27,12 @@ jobExpressRouter.post('/jobs/:jobId/pay', jobRouter.payJob())
 
 app.use(jobExpressRouter)
 
+const BalanceRouter = require('./routes/balance-router')
+const balanceRouter = new BalanceRouter({ models: sequelize.models, db: sequelize })
+
+const balanceExpressRouter = express.Router()
+balanceExpressRouter.post('/balances/deposit/:userId', balanceRouter.deposit())
+
+app.use(balanceExpressRouter)
+
 module.exports = app
