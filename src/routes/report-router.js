@@ -37,6 +37,29 @@ class ReportRouter {
       }
     }
   }
+
+  getBestClientsReport () {
+    const schema = Joi.object({
+      start: Joi.date().required(),
+      end: Joi.date().required(),
+      limit: Joi.number().min(1).max(100).required()
+    })
+    return async (req, res, next) => {
+      try {
+        console.log('req.query', req.query)
+        validate({ schema, data: req.query })
+        const userId = req.profile.id
+        const report = await this.reportService.getBestClientsReport({ ...req.query, userId })
+        return res.status(StatusCodes.OK).send(report)
+      } catch (error) {
+        console.log(error)
+        if (error instanceof ValidationError) {
+          return next(new createError.BadRequest(error.message))
+        }
+        return next(new createError.InternalServerError(error))
+      }
+    }
+  }
 }
 
 module.exports = ReportRouter

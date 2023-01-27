@@ -40,8 +40,10 @@ const ReportRouter = require('./routes/report-router')
 const reportRouter = new ReportRouter({ models: sequelize.models, db: sequelize })
 
 const reportExpressRouter = express.Router()
-reportExpressRouter.get('/admin/best-profession', reportRouter.getBestProfessionReport())
 reportExpressRouter.use(getProfile)
+reportExpressRouter.get('/admin/best-profession', reportRouter.getBestProfessionReport())
+reportExpressRouter.get('/admin/best-clients', reportRouter.getBestClientsReport())
+
 app.use(reportExpressRouter)
 
 module.exports = app
